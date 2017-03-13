@@ -1,0 +1,4 @@
+-cp src
+-lib TarantoolHaxe
+-main Main
+-lua out/main.lua

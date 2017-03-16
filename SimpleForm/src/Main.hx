@@ -10,7 +10,7 @@ class Main {
 
         App.listen({
             Port : 65201,
-            StaticDir : "css"
+            StaticDir : "./media"
         });
     }
 }

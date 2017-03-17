@@ -31,7 +31,7 @@ class FormView extends View {
         return 
                 div ({ id : "signup", style : "display : block;" },[
                     h1 ({ text : "Sign Up for Free" }),
-                    form ({ action : "/singup", method : FormMethodType.post },[
+                    form ({ action : "/signup", method : FormMethodType.post },[
                         div ({ css : "top-row" },[
                             fieldWrap ("First Name"),
                             fieldWrap ("Last Name")
@@ -48,9 +48,9 @@ class FormView extends View {
      */
     private inline function singInTab () : Tag {
         return 
-                div ({ id : "login", style : "display : none;" },[
+                div ({ id : "signin", style : "display : none;" },[
                     h1 ({ text : "Welcome Back!" }),
-                    form ({ action : "/login", method : FormMethodType.post },[                        
+                    form ({ action : "/signin", method : FormMethodType.post },[                        
                         fieldWrap ("Email Address"),
                         fieldWrap ("Password"),
                         p ({ css : "forgot" },[
@@ -79,7 +79,7 @@ class FormView extends View {
                             a ({ href : "#signup", text : "Sign Up" })
                         ]),
                         li ({ css : "tab" },[
-                            a ({ href : "#login", text : "Log In" })
+                            a ({ href : "#signin", text : "Log In" })
                         ])
                     ]),
                     div ({ css : "tab-content" },[
@@ -88,7 +88,7 @@ class FormView extends View {
                     ]),                    
                 ]),
                 script ({ type : "text/javascript", src : "http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js" }),
-                script ({ type : "text/javascript", src : "./media/js/index.js" })
+                script ({ type : "text/javascript", src : "./media/js/index.js" })                
             ])
         ]);
     }

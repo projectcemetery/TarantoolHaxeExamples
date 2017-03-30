@@ -19,11 +19,10 @@
  * THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
+package views;
+
 import zephyr.tag.*;
 import zephyr.tag.link.*;
-import zephyr.tag.form.*;
-import zephyr.tag.button.*;
-import zephyr.tag.input.*;
 import zephyr.View;
 import zephyr.HtmlBuilder.*;
 

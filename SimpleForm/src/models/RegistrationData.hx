@@ -19,6 +19,8 @@
  * THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
+package models;
+
 import tarantool.types.collections.ITupleObject;
 
 /**

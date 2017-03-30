@@ -19,41 +19,22 @@
  * THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-import zephyr.tag.*;
-import zephyr.tag.link.*;
-import zephyr.tag.form.*;
-import zephyr.tag.button.*;
-import zephyr.tag.input.*;
-import zephyr.View;
-import zephyr.HtmlBuilder.*;
+package models;
+
+import tarantool.types.collections.ITupleObject;
 
 /**
- *  Sing in/sungup form view
+ *  Data for login form
  */
-class MessageView extends RootView {
+class LoginData implements ITupleObject {
 
     /**
-     *  Message
+     *  User email. Primary key
      */
-    var message : String;
+    public var email : String;
 
     /**
-     *  Constructor
-     *  @param message - 
+     *  User password
      */
-    public function new (message : String) {
-        super ();
-        this.message = message;
-    }
-
-    /**
-     *  Render view
-     *  @return Tag
-     */
-    public override function renderContent () : Tag {
-        return div ({ css : "form" }, [            
-            h1 ({ text : message }),
-            a ({ css : "button button-block", text : "Back", href : "/" })
-        ]);
-    }
+    public var password : String;
 }

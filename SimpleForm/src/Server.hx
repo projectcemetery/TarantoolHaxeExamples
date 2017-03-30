@@ -28,6 +28,9 @@ import tarantool.index.IndexType;
 import tarantool.index.IndexFieldType;
 import tarantool.crypto.Digest;
 
+import views.*;
+import models.*;
+
 using chocolate.MapHelper;
 
 /**

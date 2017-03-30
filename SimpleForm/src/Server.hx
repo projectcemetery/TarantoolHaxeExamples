@@ -80,9 +80,8 @@ class Server {
             var user = space.get (formLogin.email).as (RegistrationData);            
             var message = "Wrong email or password";
             if (user == null) return new MessageView (message);            
-            var hash = Digest.md5 (formLogin.password);            
-            var message = if (hash == user.password) "Successful login" 
-                          else "Wrong email or password";                    
+            var hash = Digest.md5 (formLogin.password);
+            if (hash == user.password) message = "Successful login";
             return new MessageView (message);
         });
 

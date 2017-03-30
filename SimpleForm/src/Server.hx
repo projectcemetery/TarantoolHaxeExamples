@@ -19,29 +19,72 @@
  * THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
+import tarantool.box.Box;
+import tarantool.space.Space;
 import chocolate.Chocolate.App;
 import chocolate.Request;
 import chocolate.response.Response;
+import tarantool.index.IndexType;
+import tarantool.index.IndexFieldType;
+import tarantool.crypto.Digest;
+
+using chocolate.MapHelper;
 
 /**
  *  Simple server with form
  */
 class Server {
     static function main() {
-        App.get ("/", function (r : Request) : Response {            
+        Box.cfg ({
+            listen : 65301
+        });
+
+        Box.once ("create", function () {
+            var space = Space.getOrCreate ("registration");
+            space.createIndex ("primary", {
+                type : IndexType.Hash,
+                parts : [
+                    {
+                        field_no : 1,
+                        type : IndexFieldType.String
+                    }
+                 ]
+            });
+        });
+        
+        App.get ("/", function (r : Request) : Response {
             return new FormView ();
         });
 
-        App.post ("/signup", function (r : Request) : Response {
-            return "Registration success.";
+        App.post ("/signup", function (r : Request) : Response {            
+            // TODO: no error trace if box not run
+            var space = Space.getByName ("registration");
+            var reg = r.form.as (RegistrationData);
+            var user = space.get (reg.email);            
+            if (user != null) {
+                return new MessageView ("User exists");
+            } else {
+                var hash = Digest.md5 (reg.password);
+                reg.password = hash;
+                space.insert (reg);
+                return new MessageView ("Successful registration");
+            }
         });
 
         App.post ("/signin", function (r : Request) : Response {
-            return "Wrong login";
+            var space = Space.getByName ("registration");
+            var formLogin = r.form.as (LoginData);
+            var user = space.get (formLogin.email).as (RegistrationData);            
+            var message = "Wrong email or password";
+            if (user == null) return new MessageView (message);            
+            var hash = Digest.md5 (formLogin.password);            
+            var message = if (hash == user.password) "Successful login" 
+                          else "Wrong email or password";                    
+            return new MessageView (message);
         });
 
         App.listen({
-            Port : 65201,
+            Port : 8081,
             StaticDir : "./media"
         });
     }

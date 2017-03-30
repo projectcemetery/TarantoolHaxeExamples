@@ -1,9 +1,0 @@
--cp src
--lib TarantoolHaxe
--main Server
--lua out/main.lua
-
---next
--cp src
--main Client
--js media/js/index.js

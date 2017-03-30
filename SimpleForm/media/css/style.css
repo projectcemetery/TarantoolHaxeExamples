@@ -149,6 +149,7 @@ textarea {
 }
 
 .button {
+  text-align: center;
   border: 0;
   outline: none;
   border-radius: 0;
@@ -165,6 +166,7 @@ textarea {
 }
 .button:hover, .button:focus {
   background: #179b77;
+  color: #ffffff;
 }
 
 .button-block {
@@ -175,4 +177,8 @@ textarea {
 .forgot {
   margin-top: -20px;
   text-align: right;
+}
+
+.message {
+  color : #ffffff;
 }

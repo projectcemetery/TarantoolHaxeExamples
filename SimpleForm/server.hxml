@@ -1,0 +1,5 @@
+-cp src
+-lib TarantoolHaxe
+-dce full
+-main Server
+-lua out/main.lua
